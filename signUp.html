@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/0d2181fadc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/signUp.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+    <script defer src="./js/signUp.js"></script>
+    <link rel="stylesheet" href="./css/signUp.css">
+    <title>Sign Up</title>
+
+</head>
+
+<body>
+    <center>
+        <h2><b>Create an Account</b></h2>
+    </center>
+    <br />
+    <form class="custom-form needs-validation" novalidate>
+        <h2 class="form-title"><b>Sign Up</b></h2>
+
+        <div class="form-group">
+            <label for="inputUsername">Username:</label>
+            <input type="text" class="form-control" id="inputUsername" placeholder="Your username" required
+                autocomplete="off" />
+            <div class="invalid-feedback">Please enter a username.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail">Email address:</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="abc@gmail.com" required
+                autocomplete="off" />
+            <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword">Password:</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="*********" required
+                autocomplete="off" />
+            <div class="invalid-feedback">Please enter a password.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="*********" required
+                autocomplete="off" />
+            <div class="invalid-feedback">Please confirm your password.</div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <br /><br />
+        <p>Already have an account? <a href="./index.html">Login here</a></p>
+
+    </form>
+
+</body>
+
+</html>

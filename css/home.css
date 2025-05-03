@@ -1,0 +1,111 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding-top: 60px;
+  padding-top: 70px;
+}
+
+.navbar {
+  background-color: #343a40;
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.navbar .d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#userNameDisplay {
+  color: #f8f9fa;
+}
+
+.container{
+  margin-top: 20%;
+}
+
+.todo-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  margin-top: 30px;
+
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+input[type="text"] {
+  width: calc(100%);
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+
+button.add-btn {
+  margin-top: 10px;
+  padding: 10px;
+  background: #0c0d0e;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  width: 70%;
+  justify-self: center;
+  margin-left: 15%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.add-btn:hover{
+  background-color: #e74c3c;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.delete-btn {
+  padding: 5px 10px;
+  background: #e74c3c;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,0 +1,66 @@
+body {
+    background: #eef1f7;
+    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.custom-form {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    border: 7px solid rgba(0, 0, 0, 0.199);
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.custom-form .form-group,
+.custom-form .form-check {
+    margin-bottom: 1.5rem;
+}
+
+.custom-form label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #444;
+}
+
+.custom-form .form-control {
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    font-size: 1rem;
+}
+
+.custom-form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+.custom-form .btn-primary {
+    background-color: rgba(0, 0, 0, 0.199);
+    border: none;
+    color: black;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.custom-form .btn-primary:hover {
+    background-color: #0056b3;
+    color: wheat;
+}
