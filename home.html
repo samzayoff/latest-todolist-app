@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>To-Do List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       background: #f0f4f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      padding-top: 70px; /* Space for fixed navbar */
     }
+
     .todo-container {
       background: #fff;
       padding: 2rem;
@@ -22,18 +22,21 @@
       width: 100%;
       max-width: 450px;
     }
+
     h2 {
       text-align: center;
       color: #333;
     }
+
     input[type="text"] {
-      width: calc(100% - 50px);
+      width: calc(100% - 20px);
       padding: 10px;
       margin-top: 15px;
       border: 1px solid #ccc;
       border-radius: 8px;
       outline: none;
     }
+
     button.add-btn {
       margin-top: 10px;
       padding: 10px;
@@ -44,11 +47,13 @@
       border-radius: 8px;
       cursor: pointer;
     }
+
     ul {
       list-style: none;
       padding: 0;
       margin-top: 20px;
     }
+
     li {
       display: flex;
       justify-content: space-between;
@@ -57,11 +62,14 @@
       padding: 10px 15px;
       margin-bottom: 10px;
       border-radius: 8px;
+      cursor: pointer;
     }
+
     li.completed {
       text-decoration: line-through;
       color: gray;
     }
+
     .delete-btn {
       padding: 5px 10px;
       background: #e74c3c;
@@ -70,14 +78,14 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     .logout-btn {
-      background: #333;
+      background: #dc3545;
       color: white;
       border: none;
       padding: 8px 16px;
       border-radius: 8px;
       cursor: pointer;
-      float: right;
     }
   </style>
 
@@ -88,35 +96,38 @@
       window.location.href = "index.html";
     }
 
-    // Define unload protection function globally so we can remove it later
     function beforeUnloadHandler(e) {
       e.preventDefault();
       e.returnValue = '';
     }
 
-    // Activate protection
     window.addEventListener("beforeunload", beforeUnloadHandler);
   </script>
 </head>
 
 <body>
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <h3 class="mb-0 text-white">Welcome, <span id="userNameDisplay"></span></h3>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleContent">
+      <a class="navbar-brand" href="#">To-Do App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarToggleContent">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
         <ul class="navbar-nav">
+          <li class="nav-item d-flex align-items-center text-white me-3">
+            Welcome, <span id="userNameDisplay" class="ms-1 fw-semibold"></span>
+          </li>
           <li class="nav-item">
-            <button class="btn logout-btn" onclick="logout()">Logout</button>
+            <button class="logout-btn" onclick="logout()">Logout</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="container mt-5 pt-5 d-flex justify-content-center align-items-center">
+  <!-- To-Do App Container -->
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="todo-container">
       <h2>Your To-Do List</h2>
       <input type="text" id="taskInput" placeholder="Enter a task..." />
@@ -124,8 +135,67 @@
       <ul id="taskList"></ul>
     </div>
   </div>
+
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+
+    let tasks = JSON.parse(localStorage.getItem(`tasks_${currentUser}`)) || [];
+    userNameDisplay.textContent = currentUser;
+
+    function renderTasks() {
+      taskList.innerHTML = '';
+      tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.textContent = task.text;
+        if (task.completed) li.classList.add('completed');
+
+        li.addEventListener('click', function () {
+          tasks[index].completed = !tasks[index].completed;
+          saveTasks();
+          renderTasks();
+        });
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.onclick = function (e) {
+          e.stopPropagation();
+          tasks.splice(index, 1);
+          saveTasks();
+          renderTasks();
+        };
+
+        li.appendChild(deleteBtn);
+        taskList.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      const taskText = taskInput.value.trim();
+      if (taskText === '') return;
+
+      tasks.push({ text: taskText, completed: false });
+      saveTasks();
+      renderTasks();
+      taskInput.value = '';
+    }
+
+    function saveTasks() {
+      localStorage.setItem(`tasks_${currentUser}`, JSON.stringify(tasks));
+    }
+
+    function logout() {
+      window.removeEventListener("beforeunload", beforeUnloadHandler);
+      localStorage.removeItem("loggedInUser");
+      sessionStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    }
+
+    renderTasks();
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./js/home.js"></script>
->>>>>>> 5f1bfa7 ( first)
 </body>
 </html>
